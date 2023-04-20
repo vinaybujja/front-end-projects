@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>tip calculator</title>
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        body{
+            height: 100vh;
+            background: #6e5bd7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .caintainer{
+            width: 360px;
+            background: #e4c7fa;
+            border-radius: 10px;
+            box-shadow: 0 0 3px 2px rgb(106, 115, 143);
+            overflow: hidden;
+        }
+        form > *{
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            font-size: medium;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 5px;
+            position: relative;
+            left: 25px;
+        }
+        h1{
+            padding: 10px;
+            background: #c776d4;
+            font-size: large;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        button{
+            margin-left: auto;
+            margin-right: auto;
+            padding: 15px 25px;
+            background-color: rgba(74, 74, 155, 0.815);
+            color: white;
+            font-weight: bold;
+            position: unset;
+        }
+        label{
+            padding-left: 0%;
+        }
+        select{
+            width: 60%;
+        }
+        input:focus,select:focus{
+            outline: 0;
+            border: 2px solid #c776d4;
+        }
+    </style>
+</head>
+<body>
+    <div class="caintainer">
+        <h1>TIP CALCULATOR</h1>
+        <form action="" name="tip">
+            <label for="amount">Bill Amount $</label>
+            <input type="text" name="amount" id="bill" placeholder="Bill Amount">
+            <label for="dropdown">Rate our service</label>
+            <select name="dropdown" id="dropdown">
+                <option value="" selected disabled>Rating</option>
+                <option value="0.25">25% - Top Notch</option>
+                <option value="0.20">20% - Excellent</option>
+                <option value="0.15">15% - Okey</option>
+                <option value="0.10">10% - Bad</option>
+                <option value="0.05">05% - Terrible</option>
+            </select>
+            <label for="share">Number of people sharing the bill:</label>
+            <input type="text" name="share" id="ppl" placeholder="Number of People">
+            <button type="button">CALCULATE TIP!</button>
+        </form>
+        <div class="tip_val"></div>
+    </div>
+    <script>
+        let bill = document.getElementById('bill')
+        let ppl = document.getElementById('ppl')
+        let prcnt = document.getElementById('dropdown')
+        document.querySelector('button').addEventListener('click', e => {
+        console.log(bill.value, prcnt.value, bill.value);
+        document.querySelector('.tip_val').innerHTML = `<h1>TIP AMOUNT</h1><h1><sup>$</sup> ${(bill.value*prcnt.value)/ppl.value}</h1><h1>EACH</h1>`
+    })
+    </script>
+</body>
+</html>
