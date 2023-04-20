@@ -91,7 +91,7 @@
         let prcnt = document.getElementById('dropdown')
         document.querySelector('button').addEventListener('click', e => {
         console.log(bill.value, prcnt.value, bill.value);
-        document.querySelector('.tip_val').innerHTML = `<h1>TIP AMOUNT</h1><h1><sup>$</sup> ${(bill.value*prcnt.value)/ppl.value}</h1><h1>EACH</h1>`
+        document.querySelector('.tip_val').innerHTML = `<h1>TIP AMOUNT</h1><h1><sup>$</sup> ${((bill.value*prcnt.value)/ppl.value).toFixed(2)}</h1><h1>EACH</h1>`
     })
     </script>
 </body>
