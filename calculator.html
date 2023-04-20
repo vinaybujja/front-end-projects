@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        body,html{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator{
+            width: 300px;
+            aspect-ratio: 6/9;
+            padding: 5px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 5px rgb(126, 126, 126);
+            display: grid;
+            grid-template-columns: repeat(4,25%);
+            grid-template-rows: repeat(6,16.66%);
+        }
+        .display-full-string,.display-corrent-value{
+            grid-column: 1/5;
+            margin: 1px;
+            border: 0.5px solid gray;
+            border-radius: 5px;
+            padding: 20px 3px;
+            text-align: right;
+            font-family: sans-serif;
+        }
+        .display-corrent-value{
+            font-size: xx-large;
+        }
+        .display-full-string{
+            background-color: rgb(222, 222, 222);
+            font-size: large;
+        }
+        .display-corrent-value:hover{
+            cursor:text;
+        }
+        .buttons{
+            grid-row:3/7;
+            grid-column: 1/5;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid rgb(196, 196, 196);
+        }
+        .numbers-dot-equal-buttons{
+            width: 75%;
+            display: grid;
+            grid-template-columns: repeat(3,33.33%);
+        }
+        .operators{
+            width: 25%;
+            display: grid;
+        }
+        button{
+            font-size: larger;
+            border: 1px solid rgb(196, 196, 196);
+            transition-property: background-color;
+            transition-duration: 500ms;
+            transition-timing-function: ease-in-out;
+            
+        }
+        button:hover{
+            background-color: rgb(215, 215, 215);
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="calculator">
+        <div class="display-full-string"></div>
+        <div class="display-corrent-value"></div>
+        <div class="buttons">
+            <div class="numbers-dot-equal-buttons"></div>
+            <div class="operators"></div>
+        </div>
+    </div>
+    <script>
+        let numbers_dot_equal_Array = [9,8,7,6,5,4,3,2,1,'.',0,'=']
+        let operators = ['/','*','-','+']
+
+        let num_div = document.querySelector('.numbers-dot-equal-buttons')
+        let opr_div = document.querySelector('.operators')
+        let cur_val = document.querySelector('.display-corrent-value')
+        let ful_val = document.querySelector('.display-full-string')
+
+        numbers_dot_equal_Array.forEach((num)=>{num_div.innerHTML+= `<button type="button" id="${num}">${num}</button>`})
+        operators.forEach((num)=>{opr_div.innerHTML+= `<button type="button" id="${num}">${num}</button>`})
+
+        num_div.onclick = function(e){
+            if(e.target !== e.currentTarget && e.target.id !== '='){
+                if(ful_val.innerText.endsWith('=')){
+                    cur_val.innerText = ''
+                    ful_val.innerText = ''
+                }
+                cur_val.innerText+=e.target.id
+            }
+            else if(e.target.id === '=' && !ful_val.innerText.endsWith('=')){
+                ful_val.innerText+=cur_val.innerText
+                cur_val.innerText=eval(ful_val.innerText)
+                ful_val.innerText+=e.target.id
+            }
+        }
+
+        opr_div.onclick = function(e){
+            if(e.target !== e.currentTarget){
+                if(ful_val.innerText.endsWith('=')){
+                    ful_val.innerText = ''
+                }
+                else if(cur_val.innerText==='' && (ful_val.innerText.endsWith('/') || ful_val.innerText.endsWith('*') || ful_val.innerText.endsWith('-') || ful_val.innerText.endsWith('+'))){
+                    ful_val.innerText = ful_val.innerText.slice(0,-1)
+                }
+                cur_val.innerText+=e.target.id
+                ful_val.innerText+=cur_val.innerText
+                cur_val.innerText=''
+            }
+        }
+
+        document.onkeydown = e => {
+            if(e.key === 'Enter'){
+                e.preventDefault()
+                document.getElementById(`=`).click()
+            }
+            else{
+                document.getElementById(`${e.key}`).click()
+            }
+        }
+    </script>
+</body>
+</html>
