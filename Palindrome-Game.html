@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Palindrome Game</title>
+    <style>
+        *{
+            margin: 0;
+            border: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body{
+            background: #3d0000;
+        }
+        .container{
+            width: 60%;
+            height: 400px;
+            margin: 100px  auto;
+            background: #820202;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+        input{
+            width: 50%;
+            padding: 15px;
+        }
+        button{
+            padding: 10px 20px;
+            color: white;
+            background: #000;
+            font-weight: bold;
+        }
+        button:hover{
+            outline: 2px solid white;
+            background: #ff6a00de;
+            transform: position;
+            position: 13px;
+            transition: positon;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Palendrome Game</h1>
+        <h2>Enter Anything</h2>
+        <input type="text" name="input-checker" id="">
+        <button type="button">CHECK</button>
+    </div>
+    <script>
+        var b;
+        document.querySelector('button').addEventListener('click', ()=>{
+            var ar = document.querySelector('input').value.split('')
+            for(ele of ar){
+                if(ele == ar[ar.length-1]){
+                    ar.pop()
+                    b = true
+                }
+                else{
+                    b = false
+                    document.querySelector('h2').textContent = 'Oops!!! 😦it is not a palendrome, try again'
+                    break
+                }
+            }
+            if(b === true){
+                document.querySelector('h2').textContent = 'Congrats!, 😍 this is a palendrome'
+            }
+        })
+    </script>
+</body>
+</html>
