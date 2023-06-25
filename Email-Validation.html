@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email validation</title>
+    <style>
+        :root
+        {
+            --color : #ff9900;
+        }
+        *
+        {
+            margin: 0;
+        }
+        body
+        {
+            height: 100vh;
+            background-color: var(--color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container
+        {
+            padding: 10px;
+            width: 500px;
+            background-color: #fff;
+        }
+        h1
+        {
+            margin: 15px;
+            font-size: smaller;
+            text-align: center;
+        }
+        input,button
+        {
+            margin: 10px;
+            padding: 10px;
+            width: calc(100% - 42px);
+        }
+        button
+        {
+            transform: translateX(10px);
+            background-color: var(--color);
+        }
+        input::placeholder
+        {
+            color: var(--color);
+        }
+        @media (max-width : 576px) {
+            .container
+            {
+                width: 100vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <h1>Email Varification Check</h1>
+            <input type="email" name="" id="" placeholder="email@gmail.com">
+            <div class="massage">please enter email</div>
+            <button type="button">check</button>
+        </form>
+    </div>
+    <script>
+        const input = document.querySelector('input')
+        const massage = document.querySelector('.massage')
+        const button = document.querySelector('button')
+        button.addEventListener('click',valid)
+        function valid()
+        {
+            console.log(5);
+            if(input.value == '')
+            {
+                massage.textContent = 'please enter email'
+            }
+            else
+            {
+                (input.value.endsWith('@gmail.com'))?massage.textContent = 'valid email':massage.textContent = 'invalid email'
+            }
+        }
+    </script>
+</body>
+</html>
